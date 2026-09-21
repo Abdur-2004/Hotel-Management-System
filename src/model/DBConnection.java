@@ -6,7 +6,7 @@ public class DBConnection {
 
     public static Connection createDBConnection() {
         try {
-            String url = "jdbc:mysql://localhost/hotel_management";
+            String url = "jdbc:mysql://localhost:3307/hotel_management";
             con = DriverManager.getConnection(url, "root", "");
         } catch (SQLException ex) {
             ex.printStackTrace();

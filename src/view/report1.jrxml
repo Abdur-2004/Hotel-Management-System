@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="318dd210-7990-4ffd-bc7a-b5c3af1ff1f1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    r.ReservationID,
+    r.ReservationDate,
+    g.GuestName,
+    g.Contact,
+    g.Email,
+    rm.RoomName,
+    rm.RoomType,
+    rm.PricePerNight,
+    r.TotalPrice
+
+FROM Reservations r
+
+INNER JOIN Guests g
+    ON r.GuestID = g.GuestID
+
+INNER JOIN room rm
+    ON r.RoomID = rm.RoomID
+
+ORDER BY r.ReservationDate DESC, r.ReservationID DESC;]]>
+	</queryString>
+	<field name="ReservationID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ReservationDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GuestName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Contact" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RoomName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RoomType" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PricePerNight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TotalPrice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="3ea22501-17bb-4271-a458-6f24f7ad5075"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" isBold="true"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[HOTEL RESERVATION REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="15" width="192" height="20" uuid="72f1fe58-411f-4cb8-9cf0-9bd8fcd541bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reservation Details]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="14" width="49" height="20" uuid="77dfaefa-a2e1-4220-a4b4-591259e3f90e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="14" width="86" height="20" uuid="90bd90e2-dd3f-41de-9b29-0cef538172a5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="14" width="100" height="20" uuid="73d5aa06-518a-4ce2-bf56-31dc97a34338"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Guest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="14" width="81" height="20" uuid="ec3cac50-f14f-4aeb-b00d-dc9f3dc4eb40"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Room]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="14" width="88" height="20" uuid="7b03e51d-3013-461f-8d72-e1ee25910fbf"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="14" width="98" height="20" uuid="cfcc160d-f0e4-4f6d-8b71-0d4ca617e52e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="555" height="2" uuid="40d7bc29-070f-464f-acf8-7c9ed3db1c27"/>
+			</line>
+			<line>
+				<reportElement x="0" y="14" width="555" height="2" uuid="68684456-6945-4e40-8b9c-8c0f2f565e5b"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="49" height="20" uuid="44df6781-4835-4f9a-a5cd-5f337de3a879"/>
+				<textFieldExpression><![CDATA[$F{ReservationID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="0" width="86" height="20" uuid="08dfb88c-3970-4dea-b08b-6ac381b79c31"/>
+				<textFieldExpression><![CDATA[$F{ReservationDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="1" width="100" height="20" uuid="f1b45202-0f09-4337-9569-7125406ae322"/>
+				<textFieldExpression><![CDATA[$F{GuestName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="1" width="81" height="20" uuid="32d41779-61ac-461e-856e-3978ec876611"/>
+				<textFieldExpression><![CDATA[$F{RoomName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="0" width="98" height="20" uuid="b6c0c628-e884-4d4d-968a-10df1be8cf64"/>
+				<textFieldExpression><![CDATA[$F{RoomType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="0" width="88" height="20" uuid="e8e6547a-8572-4a41-bcfe-de06f285fd3e"/>
+				<textFieldExpression><![CDATA[$F{TotalPrice}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="78d5a0fd-fbf7-4e94-acb2-0617ac7bc23a"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="24" width="100" height="21" uuid="79693a23-618b-40c4-a030-015584315141"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="24" width="100" height="21" uuid="b2e9aeb7-b074-45d7-9932-a0b5c47b1f70"/>
+				<textElement textAlignment="Right">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certified by]]></text>
+			</staticText>
+			<line>
+				<reportElement x="372" y="23" width="160" height="1" uuid="0790d751-e6b6-42d3-99e0-2263b35e7f4a"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="27" y="24" width="160" height="1" uuid="d02c36dd-0465-4709-a3e7-f815f1ed3267"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="56" y="4" width="100" height="20" uuid="4ce7683a-b846-4d1b-95cb-6be7b32d39cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="92" width="555" height="2" uuid="447ec548-c2e2-4f5a-a023-bd845bc51911"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="216" y="0" width="80" height="20" uuid="17565b9a-4414-431f-94dc-8bdda2d09a99"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="296" y="0" width="40" height="20" uuid="b97d5591-1c21-4377-be84-b2e8945ebe7b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
