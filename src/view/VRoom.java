@@ -426,6 +426,11 @@ public class VRoom extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblRoom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRoomMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblRoom);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 420, 290));
@@ -469,6 +474,33 @@ public class VRoom extends javax.swing.JFrame {
     private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQtyActionPerformed
+
+    private void tblRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRoomMouseClicked
+        int selectedRow = tblRoom.getSelectedRow();
+
+        if (selectedRow >= 0) {
+
+            txtRoomID.setText(
+                    tblRoom.getValueAt(selectedRow, 0).toString()
+            );
+
+            txtRoomName.setText(
+                    tblRoom.getValueAt(selectedRow, 1).toString()
+            );
+
+            txtRoomType.setText(
+                    tblRoom.getValueAt(selectedRow, 2).toString()
+            );
+
+            txtPrice.setText(
+                    tblRoom.getValueAt(selectedRow, 3).toString()
+            );
+
+            txtQty.setText(
+                    tblRoom.getValueAt(selectedRow, 4).toString()
+            );
+        }
+    }//GEN-LAST:event_tblRoomMouseClicked
 
     private void clearFields() {
         txtRoomName.setText("");     // Clear Room Name field

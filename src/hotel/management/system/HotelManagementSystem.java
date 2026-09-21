@@ -14,20 +14,20 @@ import java.awt.event.ActionListener;
  *
  * @author Prestige
  */
-public class HotelManagementSystem extends JFrame{
-    
-    public HotelManagementSystem(){
+public class HotelManagementSystem extends JFrame {
+
+    public HotelManagementSystem() {
         setTitle("Hotel Management System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        setSize(800,400);
+        setSize(800, 400);
         setVisible(true);
     }
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
         Login login = new Login();
         login.setVisible(true);
     }
-    
+
 }

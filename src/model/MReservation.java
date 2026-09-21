@@ -1,4 +1,3 @@
-
 package model;
 
 import java.sql.*;
@@ -11,7 +10,7 @@ public class MReservation {
 
     // Method to add a reservation
     public void addReservation(int guestID, int roomID, int quantity,
-                               double totalPrice, String reservationDate) {
+            double totalPrice, String reservationDate) {
 
         PreparedStatement ps = null;
 
@@ -111,7 +110,7 @@ public class MReservation {
 
         try {
 
-            String sql = "SELECT PricePerMeter FROM room WHERE RoomID = ?";
+            String sql = "SELECT PricePerNight FROM room WHERE RoomID = ?";
 
             ps = DBConnection.createDBConnection().prepareStatement(sql);
             ps.setInt(1, roomID);
@@ -119,7 +118,7 @@ public class MReservation {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                roomPrice = rs.getDouble("PricePerMeter");
+                roomPrice = rs.getDouble("PricePerNight");
             }
 
         } finally {
@@ -138,8 +137,8 @@ public class MReservation {
 
     // Method to update an existing reservation
     public void updateReservation(int reservationID, int guestID,
-                                  int roomID, int quantity,
-                                  double totalPrice, String reservationDate) {
+            int roomID, int quantity,
+            double totalPrice, String reservationDate) {
 
         PreparedStatement ps = null;
 
@@ -165,8 +164,8 @@ public class MReservation {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsedDate = sdf.parse(reservationDate);
 
-            java.sql.Date sqlDate =
-                    new java.sql.Date(parsedDate.getTime());
+            java.sql.Date sqlDate
+                    = new java.sql.Date(parsedDate.getTime());
 
             ps.setDate(5, sqlDate);
             ps.setInt(6, reservationID);
@@ -332,8 +331,8 @@ public class MReservation {
     public ResultSet searchReservationById(int reservationID)
             throws SQLException {
 
-        String query =
-                "SELECT r.ReservationID, "
+        String query
+                = "SELECT r.ReservationID, "
                 + "r.GuestID, "
                 + "rm.RoomName, "
                 + "r.Quantity, "
@@ -342,8 +341,8 @@ public class MReservation {
                 + "INNER JOIN room rm ON r.RoomID = rm.RoomID "
                 + "WHERE r.ReservationID = ?";
 
-        PreparedStatement ps =
-                DBConnection.createDBConnection().prepareStatement(query);
+        PreparedStatement ps
+                = DBConnection.createDBConnection().prepareStatement(query);
 
         ps.setInt(1, reservationID);
 

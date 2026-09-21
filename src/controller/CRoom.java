@@ -7,43 +7,87 @@ import java.sql.SQLException;
 
 public class CRoom {
 
-    public void addProduct(int productID, String productName, double unitPrice) {
-        MRoom mfab = new MRoom();
-        mfab.addProduct(productID, productName, unitPrice);
+    // Add Room
+    public void addRoom(int roomID, String roomName, String roomType,
+            double pricePerNight, int quantity) {
+
+        MRoom mroom = new MRoom();
+
+        mroom.addRoom(
+                roomID,
+                roomName,
+                roomType,
+                pricePerNight,
+                quantity
+        );
     }
 
-    public void updateProduct(int productID, String productName, double unitPrice) {
-        if (productID <= 0 || productName.isEmpty() || unitPrice <= 0) {
-            System.out.println("Invalid input. Ensure all fields are filled and product ID is valid.");
+    // Update Room
+    public void updateRoom(int roomID, String roomName, String roomType,
+            double pricePerNight, int quantity) {
+
+        if (roomID <= 0
+                || roomName == null || roomName.isEmpty()
+                || roomType == null || roomType.isEmpty()
+                || pricePerNight <= 0
+                || quantity < 0) {
+
+            System.out.println(
+                    "Invalid input. Ensure all room fields are filled and values are valid."
+            );
+
             return;
         }
 
-        MRoom mfab = new MRoom();
-        mfab.updateProduct(productID, productName, unitPrice);
+        MRoom mroom = new MRoom();
+
+        mroom.updateRoom(
+                roomID,
+                roomName,
+                roomType,
+                pricePerNight,
+                quantity
+        );
     }
 
-    public void deleteProduct(int productID) {
-        MRoom mfab = new MRoom();
-        mfab.deleteProduct(productID);
+    // Delete Room
+    public void deleteRoom(int roomID) {
+
+        MRoom mroom = new MRoom();
+
+        mroom.deleteRoom(roomID);
     }
 
-    public void loadProducts(DefaultTableModel model) {
-        MRoom mfab = new MRoom();
-        mfab.loadProducts(model);
+    // Load Rooms
+    public void loadRooms(DefaultTableModel model) {
+
+        MRoom mroom = new MRoom();
+
+        mroom.loadRooms(model);
     }
 
-    public ResultSet searchProductById(int productID) throws SQLException {
-        MRoom mfab = new MRoom();
-        return mfab.searchProductById(productID);
+    // Search Room by ID
+    public ResultSet searchRoomById(int roomID) throws SQLException {
+
+        MRoom mroom = new MRoom();
+
+        return mroom.searchRoomById(roomID);
     }
 
-    public void checkProductExists(String productID) {
-        if (productID == null || productID.isEmpty()) {
-            System.out.println("Invalid Product ID. Cannot check existence.");
+    // Check if Room Exists
+    public void checkRoomExists(String roomID) {
+
+        if (roomID == null || roomID.isEmpty()) {
+
+            System.out.println(
+                    "Invalid room ID. Cannot check existence."
+            );
+
             return;
         }
-        MRoom mfab = new MRoom();
-        mfab.checkProductExists(productID);
-    }
 
+        MRoom mroom = new MRoom();
+
+        mroom.checkRoomExists(roomID);
+    }
 }

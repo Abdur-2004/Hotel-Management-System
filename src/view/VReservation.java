@@ -701,6 +701,11 @@ public class VReservation extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblReservation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblReservationMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblReservation);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 420, 290));
@@ -824,6 +829,84 @@ public class VReservation extends javax.swing.JFrame {
     private void txtReservationIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReservationIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtReservationIDActionPerformed
+
+    private void tblReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReservationMouseClicked
+        int selectedRow = tblReservation.getSelectedRow();
+
+        if (selectedRow >= 0) {
+
+            // Reservation ID
+            txtReservationID.setText(
+                    tblReservation.getValueAt(selectedRow, 0).toString()
+            );
+
+            // Guest ID -> Guest Name
+            int guestID = Integer.parseInt(
+                    tblReservation.getValueAt(selectedRow, 1).toString()
+            );
+
+            for (Map.Entry<String, Integer> entry : guestMap.entrySet()) {
+                if (entry.getValue() == guestID) {
+                    cmbGuestName.setSelectedItem(entry.getKey());
+                    break;
+                }
+            }
+
+            // Room ID -> Room Name
+            int roomID = Integer.parseInt(
+                    tblReservation.getValueAt(selectedRow, 3).toString()
+            );
+
+            try {
+                String sql = "SELECT RoomName FROM room WHERE RoomID = ?";
+
+                try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+                    pstmt.setInt(1, roomID);
+
+                    try (ResultSet rs = pstmt.executeQuery()) {
+
+                        if (rs.next()) {
+                            cmbRoomName.setSelectedItem(
+                                    rs.getString("RoomName")
+                            );
+                        }
+                    }
+                }
+
+            } catch (SQLException ex) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Error loading room name: "
+                        + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            // Reservation Date
+            Object dateValue = tblReservation.getValueAt(selectedRow, 2);
+
+            if (dateValue != null) {
+                try {
+                    java.util.Date date
+                            = new SimpleDateFormat("yyyy-MM-dd")
+                                    .parse(dateValue.toString());
+
+                    dtpdate.setDate(date);
+
+                } catch (java.text.ParseException ex) {
+                    dtpdate.setDate(null);
+                }
+            }
+
+            // Total Price
+            txtTotalPrice.setText(
+                    tblReservation.getValueAt(selectedRow, 4).toString()
+            );
+        }
+    }//GEN-LAST:event_tblReservationMouseClicked
 
     /**
      * @param args the command line arguments

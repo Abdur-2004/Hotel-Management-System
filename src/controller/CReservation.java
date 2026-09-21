@@ -1,4 +1,3 @@
-
 package controller;
 
 import model.*;
@@ -13,7 +12,7 @@ public class CReservation {
 
     // Method to add a reservation
     public void addReservation(int guestID, String roomName,
-                               int quantity, String reservationDate)
+            int quantity, String reservationDate)
             throws SQLException {
 
         try {
@@ -56,9 +55,9 @@ public class CReservation {
 
     // Method to update a reservation
     public void updateReservation(int reservationID, int guestID,
-                                  int roomID, int quantity,
-                                  double totalPrice,
-                                  String reservationDate) {
+            int roomID, int quantity,
+            double totalPrice,
+            String reservationDate) {
 
         if (reservationID <= 0
                 || guestID <= 0

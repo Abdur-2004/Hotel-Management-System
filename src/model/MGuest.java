@@ -1,4 +1,3 @@
-
 package model;
 
 import java.sql.*;
@@ -36,9 +35,7 @@ public class MGuest {
 
     public void checkGuestExists(String guestID) {
         String sql = "SELECT COUNT(*) FROM Guests WHERE GuestID = '" + guestID + "'";
-        try (Connection conn = DBConnection.createDBConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = DBConnection.createDBConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             if (rs.next()) {
                 if (rs.getInt(1) > 0) {
